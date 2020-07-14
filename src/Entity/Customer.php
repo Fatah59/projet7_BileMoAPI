@@ -46,6 +46,7 @@ class Customer
      */
     private $customers;
 
+
     public function getId(): ?int
     {
         return $this->id;
@@ -95,6 +96,18 @@ class Customer
     public function setCustomers(?Partner $customers): self
     {
         $this->customers = $customers;
+
+        return $this;
+    }
+
+    public function getPartner(): ?Partner
+    {
+        return $this->partner;
+    }
+
+    public function setPartner(?Partner $partner): self
+    {
+        $this->partner = $partner;
 
         return $this;
     }

@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Product;
 use App\Repository\ProductRepository;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -22,6 +23,7 @@ class ProductController extends AbstractController
 
     /**
      * @Route("/product", methods={"GET"}, name="product_list", )
+     * @IsGranted("ROLE_USER")
      *
      */
     public function list()
@@ -36,6 +38,7 @@ class ProductController extends AbstractController
 
     /**
      * @Route("/product/{id}", methods={"GET"}, name="product_show")
+     * @IsGranted("ROLE_USER")
      *
      */
     public function show(Product $product)

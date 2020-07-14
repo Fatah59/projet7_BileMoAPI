@@ -6,6 +6,7 @@ use App\Entity\Customer;
 use App\Form\CustomerType;
 use App\Repository\CustomerRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -28,8 +29,8 @@ class CustomerController extends AbstractController
     }
 
     /**
- * @Route("/customer", methods={"GET"}, name="customer_list")
- */
+     * @Route("/customer", methods={"GET"}, name="customer_list")
+     */
     public function list()
     {
         $customers =$this->customerRepository->findAll();
@@ -41,7 +42,6 @@ class CustomerController extends AbstractController
 
     /**
      * @Route("/customer/{id}", methods={"GET"}, name="customer_show")
-     *
      */
     public function show(Customer $customer)
     {
@@ -52,7 +52,6 @@ class CustomerController extends AbstractController
 
     /**
      * @Route("/customer", methods={"POST"}, name="customer_create")
-     *
      */
     public function create(Request $request)
     {
@@ -81,13 +80,12 @@ class CustomerController extends AbstractController
 
     /**
      * @Route("/customer/{id}", methods={"DELETE"}, name="customer_delete")
-     *
      */
     public function delete(Customer $customer)
     {
         $this->entityManager->remove($customer);
         $this->entityManager->flush();
 
-        return $this->json([]);
+        return $this->json([], 200);
     }
 }
