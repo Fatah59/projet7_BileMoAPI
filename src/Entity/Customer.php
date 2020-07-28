@@ -16,7 +16,7 @@ class Customer
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
      *
-     * @Groups({"list"})
+     * @Groups({"detail", "list"})
      */
     private $id;
 
