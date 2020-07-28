@@ -78,4 +78,16 @@ class CustomerController extends AbstractController
             'groups' => ['detail']
         ]);
     }
+
+    /**
+     * @Route("/customer/{id}", methods={"DELETE"}, name="customer_delete")
+     *
+     */
+    public function delete(Customer $customer)
+    {
+        $this->entityManager->remove($customer);
+        $this->entityManager->flush();
+
+        return $this->json([]);
+    }
 }
