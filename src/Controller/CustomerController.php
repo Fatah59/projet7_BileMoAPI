@@ -3,10 +3,11 @@
 namespace App\Controller;
 
 use App\Entity\Customer;
+use App\Exception\BadFormException;
+use App\Exception\BadJsonException;
 use App\Form\CustomerType;
 use App\Repository\CustomerRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -42,6 +43,7 @@ class CustomerController extends AbstractController
 
     /**
      * @Route("/customer/{id}", methods={"GET"}, name="customer_show")
+     *
      */
     public function show(Customer $customer)
     {
@@ -52,6 +54,9 @@ class CustomerController extends AbstractController
 
     /**
      * @Route("/customer", methods={"POST"}, name="customer_create")
+     *
+     * @throws BadJsonException
+     * @throws BadFormException
      */
     public function create(Request $request)
     {
@@ -61,13 +66,13 @@ class CustomerController extends AbstractController
         $requestData = json_decode($request->getContent(), true);
 
         if ($requestData === null){
-            return $this->json(['message' => 'invalid json'], 400);
+            throw new BadJsonException();
         }
 
         $customerType->submit($requestData);
 
         if (!($customerType->isSubmitted() && $customerType->isValid())){
-            return $this->json(['message' => 'Bad Request'], 400);
+            throw new BadFormException($customerType);
         }
 
         $this->entityManager->persist($customer);
