@@ -12,11 +12,11 @@ security:
                 property: username
     firewalls:
         dev:
-            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            pattern: ^/(_(profiler|wdt)|css|images|js|doc)/
             security: false
-        #main:
-         #   anonymous: lazy
-          #  provider: app_user_provider
+        main:
+            pattern: ^/doc
+            anonymous: lazy
 
         login:
             pattern: ^/login
