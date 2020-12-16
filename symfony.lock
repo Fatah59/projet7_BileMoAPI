@@ -238,6 +238,9 @@
     "symfony/dependency-injection": {
         "version": "v4.4.10"
     },
+    "symfony/deprecation-contracts": {
+        "version": "v2.2.0"
+    },
     "symfony/doctrine-bridge": {
         "version": "v4.4.10"
     },
@@ -254,7 +257,7 @@
         "version": "v1.1.7"
     },
     "symfony/expression-language": {
-        "version": "v4.4.11"
+        "version": "v4.4.17"
     },
     "symfony/filesystem": {
         "version": "v4.4.10"
@@ -296,6 +299,9 @@
             "./src/Controller/.gitignore",
             "./src/Kernel.php"
         ]
+    },
+    "symfony/http-client-contracts": {
+        "version": "v2.3.1"
     },
     "symfony/http-foundation": {
         "version": "v4.4.10"
@@ -350,6 +356,9 @@
     },
     "symfony/polyfill-intl-idn": {
         "version": "v1.17.1"
+    },
+    "symfony/polyfill-intl-normalizer": {
+        "version": "v1.20.0"
     },
     "symfony/polyfill-mbstring": {
         "version": "v1.17.1"

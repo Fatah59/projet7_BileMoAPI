@@ -61,7 +61,7 @@ class CustomerController extends AbstractController
      */
     public function list(SerializerInterface $serializer)
     {
-        $customers =$this->customerRepository->findAll();
+        $customers =$this->customerRepository->findBy(['partner' => $this->getUser()]);
 
         $json = $serializer->serialize($customers, 'json', SerializationContext::create()->setGroups(array('list')));
 
