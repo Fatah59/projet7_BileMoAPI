@@ -43,7 +43,7 @@ class Partner implements UserInterface
     private $email;
 
     /**
-     * @ORM\OneToMany(targetEntity=Customer::class, mappedBy="customers")
+     * @ORM\OneToMany(targetEntity=Customer::class, mappedBy="partner")
      */
     private $customers;
 

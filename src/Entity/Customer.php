@@ -80,8 +80,9 @@ class Customer
 
     /**
      * @ORM\ManyToOne(targetEntity=Partner::class, inversedBy="customers")
+     * @ORM\JoinColumn(nullable=false)
      */
-    private $customers;
+    private $partner;
 
 
     public function getId(): ?int
@@ -121,18 +122,6 @@ class Customer
     public function setEmail(string $email): self
     {
         $this->email = $email;
-
-        return $this;
-    }
-
-    public function getCustomers(): ?Partner
-    {
-        return $this->customers;
-    }
-
-    public function setCustomers(?Partner $customers): self
-    {
-        $this->customers = $customers;
 
         return $this;
     }
