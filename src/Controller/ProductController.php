@@ -64,7 +64,7 @@ class ProductController extends AbstractController
 
     /**
      * Get details about a specific product
-     * @Route("/product/{id}", methods={"GET"}, name="product_show")
+     * @Route("/product/show/{id}", methods={"GET"}, name="product_show")
      * @IsGranted("ROLE_USER")
      * @SWG\Parameter(
      *     name="id",

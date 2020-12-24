@@ -70,7 +70,7 @@ class CustomerController extends AbstractController
 
     /**
      * Get details about a specific customer
-     * @Route("/customer/{id}", methods={"GET"}, name="customer_show")
+     * @Route("/customer/show/{id}", methods={"GET"}, name="customer_show")
      * @SWG\Parameter(
      *     name="id",
      *     description="Id of the customer",
@@ -98,7 +98,7 @@ class CustomerController extends AbstractController
 
     /**
      * Customer creation
-     * @Route("/customer", methods={"POST"}, name="customer_create")
+     * @Route("/customer/create", methods={"POST"}, name="customer_create")
      * @SWG\Parameter(
      *     name="Customer",
      *     description="Fields to provide to create a customer",
@@ -155,7 +155,7 @@ class CustomerController extends AbstractController
 
     /**
      * Customer deletion
-     * @Route("/customer/{id}", methods={"DELETE"}, name="customer_delete")
+     * @Route("/customer/delete/{id}", methods={"DELETE"}, name="customer_delete")
      * @SWG\Parameter(
      *     name="id",
      *     description="Id of the customer to delete",
