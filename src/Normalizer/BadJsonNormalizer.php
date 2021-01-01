@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Normalizer;
 
 use App\Exception\BadJsonException;

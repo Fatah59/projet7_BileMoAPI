@@ -13,7 +13,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
 
-
 class ProductController extends AbstractController
 {
     /**
@@ -25,15 +24,19 @@ class ProductController extends AbstractController
      */
     private $serializer;
 
-    public function __construct(ProductRepository $productRepository, SerializerInterface $serializer)
-    {
+    public function __construct(
+        ProductRepository $productRepository,
+        SerializerInterface $serializer
+    ){
         $this->productRepository = $productRepository;
         $this->serializer = $serializer;
     }
 
     /**
      * Get product list
-     * @Route("/product", methods={"GET"}, name="product_list")
+     * @Route("/product",
+     *     name="product_list",
+     *     methods={"GET"})
      * @IsGranted("ROLE_USER")
      * @SWG\Parameter(
      *     name="page",
@@ -50,7 +53,6 @@ class ProductController extends AbstractController
      *      )
      * )
      * @SWG\Tag(name="Product")
-     *
      */
     public function list(SerializerInterface $serializer)
     {
@@ -59,12 +61,13 @@ class ProductController extends AbstractController
         $json = $serializer->serialize($products, 'json', SerializationContext::create()->setGroups(array('list')));
 
         return new JsonResponse($json, 200, [], true);
-
     }
 
     /**
      * Get details about a specific product
-     * @Route("/product/show/{id}", methods={"GET"}, name="product_show")
+     * @Route("/product/show/{id}",
+     *     name="product_show",
+     *     methods={"GET"})
      * @IsGranted("ROLE_USER")
      * @SWG\Parameter(
      *     name="id",
@@ -82,7 +85,6 @@ class ProductController extends AbstractController
      *      )
      * )
      * @SWG\Tag(name="Product")
-     *
      */
     public function show(SerializerInterface $serializer, Product $product)
     {

@@ -24,26 +24,29 @@ Création d'un API REST pour la société BileMo, une entreprise fictive de vent
 
     git clone https://github.com/Fatah59/projet7_BileMoAPI.git
  
- 2. Configurez les variables d'environnement nécessaire à la connexion à la base de donnnées dans une copie du fichier .env
+2. Configurez les variables d'environnement nécessaire à la connexion à la base de donnnées en créeant un fichier .env.local 
  
- 3. Téléchargez et installez les dépendances du projet avec la commande : 
+3. Téléchargez et installez les dépendances du projet avec la commande : 
  
-    composer install
+    `composer install`
     
 4. Créez la base de données, si elle n'existe pas déjà, en se plaçant dans le répertoire du projet avec la commande : 
 
-    php bin/console doctrine:database:create
-    
+    `php bin/console doctrine:database:create`
+
 5. Créez les tables de la base de données via les migrations avec les commandes :
 
-    php bin/console make:migration
-    php bin/console doctrine:migrations:migrate
+    `php bin/console make:migration` 
     
-6. Modifier votre passphrase à la ligne JWT_PASSPHRASE de votre fichier env.local et générez les clées SSH (<a href="https://slproweb.com/products/Win32OpenSSL.html" rel="nofollow">Solution pour OpenSSL sur Windows</a>) avec les commandes suivantes : 
+    `php bin/console doctrine:migrations:migrate`
 
-    $ mkdir -p config/jwt   
-    $ openssl genpkey -out config/jwt/private.pem -aes256 -algorithm rsa -pkeyopt rsa_keygen_bits:4096  
-    $ openssl pkey -in config/jwt/private.pem -out config/jwt/public.pem -pubout
+6. Modifier la passphrase à la ligne JWT_PASSPHRASE du fichier .env puis déplacez cette information dans votre fichier .env.local. Ensuite, générez les clées SSH (<a href="https://slproweb.com/products/Win32OpenSSL.html" rel="nofollow">Solution pour OpenSSL sur Windows</a>) avec les commandes suivantes : 
+
+    `$ mkdir -p config/jwt` 
+    
+    `$ openssl genpkey -out config/jwt/private.pem -aes256 -algorithm rsa -pkeyopt rsa_keygen_bits:4096`
+    
+    `$ openssl pkey -in config/jwt/private.pem -out config/jwt/public.pem -pubout`
 
 7. Si besoin, installez les fixtures afin de charger une série de données fictives en base de données.
 

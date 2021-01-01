@@ -46,8 +46,7 @@ class DataFixtures extends Fixture
             $manager->persist($customer1);
         }
 
-        // Create the product list for the partner //
-
+        // Create the product list //
         $product1 =( new Product())
             ->setName('A3')
             ->setBrand('Samsung')
@@ -80,6 +79,38 @@ class DataFixtures extends Fixture
 
         $manager->persist($product4);
 
+        $product5 =( new Product())
+            ->setName('Iphone7')
+            ->setBrand('Apple')
+            ->setDescription('4G et 16Go')
+            ->setPrice('50');
+
+        $manager->persist($product5);
+
+        $product6 =( new Product())
+            ->setName('Iphone7')
+            ->setBrand('Apple')
+            ->setDescription('4G et 32Go')
+            ->setPrice('40');
+
+        $manager->persist($product6);
+
+        $product7 =( new Product())
+            ->setName('Iphone7')
+            ->setBrand('Apple')
+            ->setDescription('4G et 64Go')
+            ->setPrice('60');
+
+        $manager->persist($product7);
+
+        $product8 =( new Product())
+            ->setName('Iphone7')
+            ->setBrand('Apple')
+            ->setDescription('4G et 128Go')
+            ->setPrice('100');
+
+        $manager->persist($product8);
+
         // Create a partner2 //
         $adminPartner2 = new Partner();
         $adminPartner2->setUsername('SFR');
@@ -102,41 +133,6 @@ class DataFixtures extends Fixture
 
             $manager->persist($customer1);
         }
-
-        // Create the product list for the partner2 //
-
-        $product1 =( new Product())
-            ->setName('Iphone7')
-            ->setBrand('Apple')
-            ->setDescription('4G et 16Go')
-            ->setPrice('50');
-
-        $manager->persist($product1);
-
-        $product2 =( new Product())
-            ->setName('Iphone7')
-            ->setBrand('Apple')
-            ->setDescription('4G et 32Go')
-            ->setPrice('40');
-
-        $manager->persist($product2);
-
-        $product3 =( new Product())
-            ->setName('Iphone7')
-            ->setBrand('Apple')
-            ->setDescription('4G et 64Go')
-            ->setPrice('60');
-
-        $manager->persist($product3);
-
-        $product4 =( new Product())
-            ->setName('Iphone7')
-            ->setBrand('Apple')
-            ->setDescription('4G et 128Go')
-            ->setPrice('100');
-
-        $manager->persist($product4);
-
         $manager->flush();
     }
 }
