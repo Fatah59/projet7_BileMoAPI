@@ -23,17 +23,22 @@ class CustomerController extends AbstractController
      * @var CustomerRepository
      */
     private $customerRepository;
+
     /**
      * @var EntityManagerInterface
      */
     private $entityManager;
+
     /**
      * @var SerializerInterface
      */
     private $serializer;
 
-    public function __construct(EntityManagerInterface $entityManager, CustomerRepository $customerRepository, SerializerInterface $serializer)
-    {
+    public function __construct(
+        EntityManagerInterface $entityManager,
+        CustomerRepository $customerRepository,
+        SerializerInterface $serializer
+    ) {
         $this->customerRepository = $customerRepository;
         $this->entityManager = $entityManager;
         $this->serializer = $serializer;
@@ -41,7 +46,9 @@ class CustomerController extends AbstractController
 
     /**
      * List of customers
-     * @Route("/customer", methods={"GET"}, name="customer_list")
+     * @Route("/customer",
+     *     name="customer_list",
+     *     methods={"GET"})
      * @SWG\Parameter(
      *     name="page",
      *     description="The list of customers",
@@ -70,7 +77,9 @@ class CustomerController extends AbstractController
 
     /**
      * Get details about a specific customer
-     * @Route("/customer/show/{id}", methods={"GET"}, name="customer_show")
+     * @Route("/customer/show/{id}",
+     *     name="customer_show",
+     *     methods={"GET"})
      * @SWG\Parameter(
      *     name="id",
      *     description="Id of the customer",
@@ -82,8 +91,8 @@ class CustomerController extends AbstractController
      *     response=200,
      *     description="OK",
      *     @SWG\Schema(
-     *     type="array",
-     *     @SWG\Items(ref=@Model(type=Customer::class, groups = {"detail"}))
+     *         type="array",
+     *         @SWG\Items(ref=@Model(type=Customer::class, groups = {"detail"}))
      *     )
      * )
      * @SWG\Tag(name="Customer")
@@ -98,7 +107,9 @@ class CustomerController extends AbstractController
 
     /**
      * Customer creation
-     * @Route("/customer/create", methods={"POST"}, name="customer_create")
+     * @Route("/customer/create",
+     *     name="customer_create",
+     *     methods={"POST"})
      * @SWG\Parameter(
      *     name="Customer",
      *     description="Fields to provide to create a customer",
@@ -106,19 +117,19 @@ class CustomerController extends AbstractController
      *     required=true,
      *     type="string",
      *     @SWG\Schema(
-     *     type="object",
-     *     title="Customer field",
-     *     @SWG\Property(property="firstname", type="string"),
-     *     @SWG\Property(property="lastname", type="string"),
-     *     @SWG\Property(property="email", type="string")
+     *         type="object",
+     *         title="Customer field",
+     *         @SWG\Property(property="firstname", type="string"),
+     *         @SWG\Property(property="lastname", type="string"),
+     *         @SWG\Property(property="email", type="string")
      *     )
      * )
      * @SWG\Response(
      *     response="201",
      *     description="CREATED",
      *     @SWG\Schema(
-     *     type="array",
-     *     @SWG\Items(ref=@Model(type=Customer::class, groups = {"detail"}))
+     *         type="array",
+     *         @SWG\Items(ref=@Model(type=Customer::class, groups = {"detail"}))
      *     )
      * )
      * @SWG\Tag(name="Customer")
@@ -130,14 +141,14 @@ class CustomerController extends AbstractController
         $customer = new Customer();
         $customerType = $this->createForm(CustomerType::class, $customer);
 
+        // Json verification
         $requestData = json_decode($request->getContent(), true);
-
         if ($requestData === null){
             throw new BadJsonException();
         }
 
+        // Form verification
         $customerType->submit($requestData);
-
         if (!($customerType->isSubmitted() && $customerType->isValid())){
             throw new BadFormException($customerType);
         }
@@ -150,12 +161,13 @@ class CustomerController extends AbstractController
         $data = $serializer->serialize($customer, 'json', $group);
 
         return new JsonResponse($data, 201, [], true);
-
     }
 
     /**
      * Customer deletion
-     * @Route("/customer/delete/{id}", methods={"DELETE"}, name="customer_delete")
+     * @Route("/customer/delete/{id}",
+     *     name="customer_delete",
+     *     methods={"DELETE"})
      * @SWG\Parameter(
      *     name="id",
      *     description="Id of the customer to delete",
@@ -168,7 +180,6 @@ class CustomerController extends AbstractController
      *     description=""
      * )
      * @SWG\Tag(name="Customer")
-     *
      */
     public function delete(Customer $customer, SerializerInterface $serializer)
     {
@@ -177,6 +188,6 @@ class CustomerController extends AbstractController
 
         $data = $serializer->serialize([], 'json');
 
-        return new JsonResponse($data, 200, [], true);
+        return new JsonResponse($data, 204, [], true);
     }
 }

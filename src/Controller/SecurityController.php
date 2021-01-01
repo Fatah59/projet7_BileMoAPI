@@ -7,12 +7,13 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
 
-
 class SecurityController extends AbstractController
 {
     /**
      * Generates a JWT token
-     * @Route("/login_check", methods={"POST"}, name="api_login")
+     * @Route("/login_check",
+     *     name="api_login",
+     *     methods={"POST"})
      * @SWG\Parameter(
      *     name="Login",
      *     description="Fields to provide to sign in and get a token",
